@@ -1,4 +1,6 @@
 # https://projecteuler.net/problem=21
+import math
+
 
 def is_proper_divisor(divisor, n):
     if divisor >= n:
@@ -9,14 +11,13 @@ def is_proper_divisor(divisor, n):
 
 
 def sum_proper_divisors(n):
-    sum = 0
+    sum = 1
 
-    for x in range(1, n + 1):
+    for x in range(2, math.floor(math.sqrt(n)) + 1):
         if is_proper_divisor(x, n):
             sum += x
-
+            sum += n / x
     return sum
-
 
 def divisor_sums_in_range(n):
     number_pairs = []
@@ -26,7 +27,6 @@ def divisor_sums_in_range(n):
 
     return number_pairs
 
-
 def is_amicable_pair(p1, p2):
     if p1[0] == p2[1] and p1[1] == p2[0]:
         return True
@@ -34,7 +34,7 @@ def is_amicable_pair(p1, p2):
 
 # would be better if this function removed items from the list as they were checked
 def sum_amicable_pairs(n):
-    amicable_pairs = 0
+    sum_of_pairs = 0
 
     divisor_sums = divisor_sums_in_range(n)
     for x in divisor_sums:
@@ -42,9 +42,9 @@ def sum_amicable_pairs(n):
             if x == y:
                 continue
             if is_amicable_pair(x, y):
-                amicable_pairs += x[0]
+                sum_of_pairs += x[0]
 
-    return amicable_pairs
+    return sum_of_pairs
 
 
 print(sum_amicable_pairs(10000))
