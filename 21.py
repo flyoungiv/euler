@@ -33,8 +33,6 @@ def is_amicable_pair(p1, p2):
     return False
 
 # would be better if this function removed items from the list as they were checked
-
-
 def sum_amicable_pairs(n):
     amicable_pairs = 0
 
